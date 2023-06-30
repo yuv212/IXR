@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
     public Transform ballbridge;
     public float speed;
     public Transform explosion;
+    public Transform powerup;
     public GameManager gm;
 
 
@@ -22,6 +23,10 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gm.gameOver)
+        {
+            return;
+        }
         if (!inplay)
         {
             transform.position = ballbridge.position;
@@ -47,9 +52,27 @@ public class BallScript : MonoBehaviour
     {
         if(other.transform.CompareTag("Bricks"))
         {
-           Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
-            Destroy(newExplosion.gameObject, 2.5f);
-            Destroy(other.gameObject);
+            BrickScript brickscript = other.gameObject.GetComponent<BrickScript>();
+            if (brickscript.hitsToBreak > 1)
+            {
+                // ball is calling the broken break through the below given function 
+                brickscript.BreakBrick();
+            }
+            else
+            {
+                int randchance = Random.Range(1, 101);
+                if (randchance > 75)
+                {
+                    Instantiate(powerup, other.transform.position, other.transform.rotation);
+                }
+                Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
+                Destroy(newExplosion.gameObject, 2.5f);
+
+                //adding points in below line 
+                gm.UpdateScore(brickscript.points);
+                gm.UpdateNumberOfBricks();
+                Destroy(other.gameObject);
+            }
         }
     }
 }
