@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public bool gameOver;
     public GameObject gameoverpanel;
+    public GameObject loadlevelpanel;
     public int numberOfBricks;
     public Transform[] levels;        // for level increase
     public int currentLevelIndex = 0;
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
             }
             else     // for start second level in the game
             {
+                loadlevelpanel.SetActive(true); // while loading second level panel
+                loadlevelpanel.GetComponentInChildren <Text>().text = "Next level" + (currentLevelIndex);
                 gameOver = true;
                
                 Invoke("LoadLevel", 3f);   // for calling the function in future
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
         Instantiate(levels[currentLevelIndex], Vector2.zero, Quaternion.identity);
         numberOfBricks = GameObject.FindGameObjectsWithTag("Bricks").Length;
         gameOver = false;
+        loadlevelpanel.SetActive(false);
     }
     void GameOver()
     {
