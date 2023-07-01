@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             else     // for start second level in the game
             {
                 loadlevelpanel.SetActive(true); // while loading second level panel
-                loadlevelpanel.GetComponentInChildren <Text>().text = "Next level" + (currentLevelIndex);
+                loadlevelpanel.GetComponentInChildren<Text>().text = "Next level";  //+ (currentLevelIndex);    // for printing level index 
                 gameOver = true;
                
                 Invoke("LoadLevel", 3f);   // for calling the function in future
