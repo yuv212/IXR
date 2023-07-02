@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour
     public float speed;
     public Transform explosion;
     public Transform powerup;
+    AudioSource audio;
     public GameManager gm;
 
 
@@ -17,14 +18,16 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audio = GetComponent<AudioSource>();
         //rb.AddForce(Vector2.up * 700);
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
         if(gm.gameOver)
         {
+            
             return;
         }
         if (!inplay)
@@ -73,6 +76,8 @@ public class BallScript : MonoBehaviour
                 gm.UpdateNumberOfBricks();
                 Destroy(other.gameObject);
             }
+
+            audio.Play();
         }
     }
 }
