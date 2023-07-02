@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public void UpdateNumberOfBricks()
     {
         numberOfBricks--;
-        if(numberOfBricks <= 0)
+        if(numberOfBricks <= 1)
         {
             if (currentLevelIndex >= levels.Length - 1)  //for 1st level
             {
@@ -57,10 +57,10 @@ public class GameManager : MonoBehaviour
             else     // for start second level in the game
             {
                 loadlevelpanel.SetActive(true); // while loading second level panel
-                loadlevelpanel.GetComponentInChildren<Text>().text = "Next level";  //+ (currentLevelIndex);    // for printing level index 
+                loadlevelpanel.GetComponentInChildren<Text>().text = "Next level" + (currentLevelIndex + 2);    // for printing level index 
                 gameOver = true;
                
-                Invoke("LoadLevel", 3f);   // for calling the function in future
+                Invoke("LoadLevel", 2f);   // for calling the function in future
             }
         
         }
