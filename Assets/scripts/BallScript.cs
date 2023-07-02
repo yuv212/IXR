@@ -18,7 +18,7 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        audio = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>(); // for providing the audio when we provide force to ball and when it hits to the brick 
         //rb.AddForce(Vector2.up * 700);
     }
 
@@ -30,11 +30,11 @@ public class BallScript : MonoBehaviour
             
             return;
         }
-        if (!inplay)
+        if (!inplay)     //this function is used when another level load and ball gets the position on the pallet or ball bridge ...
         {
             transform.position = ballbridge.position;
         }
-        if (Input.GetButtonDown("Jump") && !inplay)
+        if (Input.GetButtonDown("Jump") && !inplay)   // jump button is providinf the force to the ball when gam starts 
         {
             inplay = true;
             rb.AddForce(Vector2.up * speed);
@@ -45,7 +45,7 @@ public class BallScript : MonoBehaviour
     {
         if (other.CompareTag("bottom"))
         {
-            Debug.Log("bottom hit");
+            Debug.Log("bottom hit");   //when ball hits to the bottom collider then on trigger function calls and console section gives the message of bottom hits and update the lives 
             rb.velocity = Vector2.zero;
             inplay = false;
             gm.UpdateLives(-1);
@@ -63,8 +63,8 @@ public class BallScript : MonoBehaviour
             }
             else
             {
-                int randchance = Random.Range(1, 101);
-                if (randchance > 75)
+                int randchance = Random.Range(1, 101);     // this function calls when ball hits the brick and extra lives powerup at random chances 
+                if (randchance > 100)
                 {
                     Instantiate(powerup, other.transform.position, other.transform.rotation);
                 }
