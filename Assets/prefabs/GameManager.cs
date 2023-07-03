@@ -112,7 +112,8 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()   // this is the another option of quiting the game ...
     {
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene("Start Menu");
         Debug.Log("Game Quit");
     }
 }
