@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameoverpanel.SetActive(true);
         int highScore = PlayerPrefs.GetInt("HIGHSCORE");   // high score text box included when gets game over 
-        if(score > highScore)
+        if(score < highScore)
         {
             PlayerPrefs.SetInt("HIGHSCORE", score);
 
@@ -101,12 +101,12 @@ public class GameManager : MonoBehaviour
 
     //public void newhighscore()
     //{
-        //    string highScoreName = highScoreInput.text;
-        //   PlayerPrefs.SetString("HIGHSCORENAME", highScoreName);
-        //    highScoreInput.gameObject.SetActive(false);
-        //    highScoreText.text = "Congratulations" + "\n" + "your new high score  is " + score;
-        //}
-        public void PlayAgain()      // game over panel include two buttons using (Ui text) where this one is for play again option 
+    //    string highScoreName = highScoreInput.text;
+    //    PlayerPrefs.SetString("HIGHSCORENAME", highScoreName);
+    //    highScoreInput.gameObject.SetActive(false);
+    //    highScoreText.text = "Congratulations" + "\n" + "your new high score  is " + score;
+    //}
+    public void PlayAgain()      // game over panel include two buttons using (Ui text) where this one is for play again option 
     {
         SceneManager.LoadScene("SampleScene");
     }

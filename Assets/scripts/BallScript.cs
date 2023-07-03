@@ -10,7 +10,7 @@ public class BallScript : MonoBehaviour
     public float speed;
     public Transform explosion;
     public Transform powerup;
-    AudioSource audio;
+    AudioSource audios;
     public GameManager gm;
 
 
@@ -18,7 +18,7 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        audio = GetComponent<AudioSource>(); // for providing the audio when we provide force to ball and when it hits to the brick 
+        audios = GetComponent<AudioSource>(); // for providing the audio when we provide force to ball and when it hits to the brick 
         //rb.AddForce(Vector2.up * 700);
     }
 
@@ -78,7 +78,7 @@ public class BallScript : MonoBehaviour
                 Destroy(other.gameObject);
             }
 
-            audio.Play();
+            GetComponent<AudioSource>().Play();
         }
     }
 }
