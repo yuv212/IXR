@@ -11,13 +11,15 @@ public class GameManager : MonoBehaviour
     public Text livesText;
     public Text scoreText;
     public Text highScoreText;
+    public InputField highScoreInput;
     public bool gameOver;
     public GameObject gameoverpanel;
     public GameObject loadlevelpanel;
     public int numberOfBricks;
     public Transform[] levels;        // for level increase
     public int currentLevelIndex = 0;
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
+    //public Transform ballbridge;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
                 loadlevelpanel.GetComponentInChildren<Text>().text = "Next level" + (currentLevelIndex + 2);         // for printing level index 
                 gameOver = true;
                
-                Invoke("LoadLevel", 4f);        // for calling the function in future
+                Invoke("LoadLevel", 3f);        // for calling the function in future means our next level wil be load after 3 secs. that have mention
             }
         
         }
@@ -70,7 +72,8 @@ public class GameManager : MonoBehaviour
     }
     void LoadLevel()
     {
-        rb.velocity = Vector2.zero;
+        //rb.velocity = Vector2.zero;
+        //rb.position = ballbridge.position;
         currentLevelIndex++;
         Instantiate(levels[currentLevelIndex], Vector2.zero, Quaternion.identity);
         numberOfBricks = GameObject.FindGameObjectsWithTag("Bricks").Length;   // loading levels when bricks will be zero shown in game manager panel 
@@ -87,14 +90,23 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HIGHSCORE", score);
 
-            highScoreText.text = "NEW HIGH SCORE" + score;  
+            highScoreText.text = "NEW HIGH SCORE" + "\n" + "ENTER YOUR NAME BELOW.";
+            highScoreInput.gameObject.SetActive(true);
         }
         else
         {
-            highScoreText.text = "HIGH SCORE" + highScore + "\n" + "can you beat it?";
+            highScoreText.text = "HIGH SCORE" + highScore+ "\n" + "can you beat it?";
         }
     }
-    public void PlayAgain()      // game over panel include two buttons using (Ui text) where this one is for play again option 
+
+    //public void newhighscore()
+    //{
+        //    string highScoreName = highScoreInput.text;
+        //   PlayerPrefs.SetString("HIGHSCORENAME", highScoreName);
+        //    highScoreInput.gameObject.SetActive(false);
+        //    highScoreText.text = "Congratulations" + "\n" + "your new high score  is " + score;
+        //}
+        public void PlayAgain()      // game over panel include two buttons using (Ui text) where this one is for play again option 
     {
         SceneManager.LoadScene("SampleScene");
     }
