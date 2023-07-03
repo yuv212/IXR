@@ -27,6 +27,7 @@ public class ballbridgeScript : MonoBehaviour
         if( transform.position.x < leftScreenEdge)
         {
             transform.position = new Vector2(leftScreenEdge, transform.position.y);
+            transform.position = new Vector2(leftScreenEdge, transform.position.y);
         }
         if (transform.position.x > rightScreenEdge)
         {
