@@ -64,7 +64,7 @@ public class BallScript : MonoBehaviour
             else
             {
                 int randchance = Random.Range(1, 101);     // this function calls when ball hits the brick and extra lives powerup at random chances 
-                if (randchance > 100)
+                if (randchance >75)
                 {
                     Instantiate(powerup, other.transform.position, other.transform.rotation);
                 }
