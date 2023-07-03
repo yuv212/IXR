@@ -32,6 +32,7 @@ public class BallScript : MonoBehaviour
         }
         if (!inplay)     //this function is used when another level load and ball gets the position on the pallet or ball bridge ...
         {
+
             transform.position = ballbridge.position;
         }
         if (Input.GetButtonDown("Jump") && !inplay)   // jump button is providinf the force to the ball when gam starts 
